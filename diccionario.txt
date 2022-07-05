@@ -88,4 +88,3 @@ product_category_name_english =Nombre de la categoria del producto  en Ingles
 
 
 
-Closes deals
