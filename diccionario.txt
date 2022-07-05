@@ -1,0 +1,91 @@
+Customer
+customer_id = indice de la tabla cliente
+customer_unique_id = identifificador unico de cada cliente
+customer_zip_code_prefix = codigo postal de la residencia cliente
+customer_city = ciudad donde reside el cliente
+customer_state = codigo del estado donde reside el cliente
+
+
+No tiene datos nulos la tabla customer
+
+
+geolocation
+geolocation_zip_code_prefix = 	
+geolocation_lat = latitud relacionada al codigo postal
+geolocation_lng = longiut relacionada al codigo postal
+
+
+
+order_items
+order_id = Identificador de la orden de compra
+Order_Item_id = Numero de item dentro de la compra
+product_id = Identificador del producto
+seller_id= Identificador del vendedor
+shipping_limit_date = Fecha limite de envio
+Price = Precio del producto
+Freight_value = Precio del transporte
+
+
+
+
+order_reviews
+review_id = identificador de reseña
+order_id = Identificador unico de la orden de compra
+review_score = Calificacion de la reseña  
+review_comment_title = titulo del comentario de la reseña
+review_comment_message = mensaje de la reseña 
+review_creation_date = Fecha de creacion de la reseña
+review_answer_timestamp = Tiempo de respuesta de la reseña 
+
+
+order_payments
+order_id = Identificador unico de la orden de compra
+payment_sequential = orden de pago
+payment_type = Tipo de medio de pago
+payment_installments = cantidad de cuotas 
+payment_value = valor de la compra
+
+
+
+ 
+
+Orders
+customer_id = Identificador de la orden de compra
+order_status  = Estado de la compra
+order_purchase_timestamp = Fecha de compra 
+order_approved_at	 = Fecha de aprobacion de compra
+order_delivered_carrier_date = Fecha de envio
+order_delivered_customer_date = Fecha de entrega
+order_estimated_delivery_date = Fecha estimada de entraga
+
+
+
+sellers
+seller_id = Identificador unico de vendedor
+seller_zip_code_prefix	 = Codigo postal ubicacion del vendedor
+seller_city	= Ciudad del vendedor
+seller_state = Estado donde reside el vendedor
+
+
+
+products
+product_id = Identificador unico del producto
+product_category_name = categoria del producto
+product_photos_qty = cantidad de fotos del producto
+product_weight_g = Peso del producto en gramos
+product_length_cm = Longitud del producto en centimetros
+product_height_cm'= Altura del producto en centimetros
+product_width_cm = Ancho del producto en centimetros
+product_name_lenght = Longitud del nombre del producto
+product_description_lenght = Longitud del nombre del producto
+
+
+
+product_category
+product_category_name = Nombre de la categoria del producto
+product_category_name_english =Nombre de la categoria del producto  en Ingles
+
+
+
+
+Closes deals
