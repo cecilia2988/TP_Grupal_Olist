@@ -9,11 +9,12 @@ customer_state = codigo del estado donde reside el cliente
 No tiene datos nulos la tabla customer
 
 
-geolocation
-geolocation_zip_code_prefix = 	
+Geolocation
+geolocation_zip_code_prefix = 	codigo postal
 geolocation_lat = latitud relacionada al codigo postal
-geolocation_lng = longiut relacionada al codigo postal
-
+geolocation_lng = longitud relacionada al codigo postal
+geolocation_city = ciudad 
+geolocation_state = estado
 
 
 order_items
@@ -85,6 +86,12 @@ product_category
 product_category_name = Nombre de la categoria del producto
 product_category_name_english =Nombre de la categoria del producto  en Ingles
 
+
+QualifieldLeads
+mql_id
+firts_contact_date
+landing_page_id
+origin
 
 
 
