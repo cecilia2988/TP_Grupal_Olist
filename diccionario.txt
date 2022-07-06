@@ -40,7 +40,7 @@ review_answer_timestamp = Tiempo de respuesta de la reseña
 
 order_payments
 order_id = Identificador unico de la orden de compra
-payment_sequential = orden de pago
+payment_sequential = orden de metodos de pagos elegido por el cliente
 payment_type = Tipo de medio de pago
 payment_installments = cantidad de cuotas 
 payment_value = valor de la compra
@@ -86,5 +86,11 @@ product_category_name = Nombre de la categoria del producto
 product_category_name_english =Nombre de la categoria del producto  en Ingles
 
 
+
+
+crear rama 
+subirlo con push origin rama
+merge a la rama que quiero
+pull origin desarrollo
 
 
