@@ -1,0 +1,12 @@
+- tildAR WSL2
+- DESTILDAR HYPERV - APLICACIONES Y CARACTERISTICAS 
+
+
+user postgres
+pass postgres
+hostname mypostgres
+database server
+
+
+minio_admin
+minio_password
