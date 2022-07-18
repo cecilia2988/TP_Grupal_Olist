@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import base64
+# import base64
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -38,13 +38,13 @@ st.write('Data Dimension: ' + str(df_selected_city.shape[0]) + ' rows and ' + st
 st.dataframe(df_selected_city)
 
 
-def filedownload(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-    href = f'<a href="data:file/csv;base64,{b64}" download="playerstats.csv">Download CSV File</a>'
-    return href
+# def filedownload(df):
+#     csv = df.to_csv(index=False)
+#     b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
+#     href = f'<a href="data:file/csv;base64,{b64}" download="playerstats.csv">Download CSV File</a>'
+#     return href
 
-st.markdown(filedownload(df_selected_city), unsafe_allow_html=True)
+# st.markdown(filedownload(df_selected_city), unsafe_allow_html=True)
 
 # BARPLOT
 if st.button('Ver Barplot'):
