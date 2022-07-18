@@ -3,11 +3,14 @@ import pandas as pd
 import io
 import re
 import time
+from os import environ
 #from secretsaws import access_key, secret_access_key
-from dotenv import dotenv_values
-config = dotenv_values(".env") 
-access_key=config["access_key"]
-secret_access_key=config["secret_access_key"]
+# from dotenv import dotenv_values
+# config = dotenv_values(".env") 
+# access_key=config["access_key"]
+# secret_access_key=config["secret_access_key"]
+access_key=environ.get("access_key")
+secret_access_key=environ.get("secret_access_key")
 
 params = {
     'region': 'us-east-1',
