@@ -1,0 +1,11 @@
+streamlit
+pandas
+base64
+io
+re
+time
+matplotlib.pyplot
+seaborn
+numpy
+boto3
+dotenv
