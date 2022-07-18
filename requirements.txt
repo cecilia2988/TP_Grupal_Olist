@@ -1,4 +1,3 @@
-dotenv
 streamlit
 pandas
 matplotlib
