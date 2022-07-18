@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from automatic_athena_download import *
-from secretsaws import access_key, secret_access_key
+#from secretsaws import access_key, secret_access_key
 
 st.title('Demostracion Olist')
 
