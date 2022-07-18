@@ -1,6 +1,5 @@
 streamlit
 pandas
-re
 time
 matplotlib.pyplot
 seaborn
