@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from automatic_athena_download import *
+import page_config 
 #from secretsaws import access_key, secret_access_key
+
+page_config.run()
 
 st.title('Demostracion Olist')
 
