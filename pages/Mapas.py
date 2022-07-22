@@ -22,7 +22,7 @@ st.sidebar.header('User Input Features')
 selected_region = st.sidebar.selectbox('Region', ["Todas","Norte","Centro","Sur","Sudeste","Nordeste"])
 
 clientes= traer_df('SELECT * FROM processed_customers')
-geolocalizacion= traer_df('SELECT * FROM processed_geolocation')
+geolocalizacion= traer_df('GeolocationNor.csv')
 vendedores=traer_df("SELECT * FROM processed_sellers")
 # clientes = pd.read_csv(".\csv normalizados\csv normalizados\CustomersNor.csv",delimiter = ',',encoding = "utf-8")
 # geolocalizacion =pd.read_csv(".\csv normalizados\csv normalizados\GeolocationNor.csv",delimiter = ',',encoding = "utf-8")
