@@ -54,25 +54,22 @@ product_vendidos.reset_index(inplace=True)
 
 
 
-@st.cache
-def load_data(year):
-    if year=='All':
-        df=product_vendidos
-    if year=='2016':
-        df=product_vendidos[product_vendidos.Year == 2016]
-    if year=='2017':
-        df=product_vendidos[product_vendidos.Year == 2017]
-    if year=='2018':
-        
-        df=product_vendidos[product_vendidos.Year == 2018]        
-    return df
-df_selected = load_data(selected_year)
+if selected_year=='All':
+    df=product_vendidos
+if selected_year=='2016':
+    df=product_vendidos[product_vendidos.Year == 2016]
+if selected_year=='2017':
+    df=product_vendidos[product_vendidos.Year == 2017]
+if selected_year=='2018':
+    df=product_vendidos[product_vendidos.Year == 2018]        
+ 
 
 
 
 
 
-fig = px.bar(df_selected, y='order_id', x='month_year', text_auto='.3s',
+
+fig = px.bar(df, y='order_id', x='month_year', text_auto='.3s',
             title="Cantidad de productos vendidos por mes" ,color_discrete_sequence=["black", "red","green"])
 fig.update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
 #fig.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
@@ -144,7 +141,7 @@ figvolumen.update_traces(textfont_size=12, textangle=0, textposition="outside", 
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Ingresos ", str(round(volumen_fil.total_price.sum(),0)), 'R$')
-col2.metric("Productos vendidos", str(round(df_selected.order_id.sum(),0)), "unidades")
+col2.metric("Productos vendidos", str(round(df.order_id.sum(),0)), "unidades")
 col3.metric("Clientes", '98634')
 col4.metric("Vendedores", '3095')
 st.markdown("""---""")
