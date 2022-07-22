@@ -10,8 +10,8 @@ import page_config
 page_config.run()
 
 
-image = Image.open(".\pages\mapa.png")
-
+# image = Image.open(".\pages\mapa.png")
+image = Image.open("mapa.png")
 lNorte =[ 'RO','AM','RN','PA','TO']
 lCentro=['MT','DF','GO','MS']
 lSur=['PR','SC','RS']

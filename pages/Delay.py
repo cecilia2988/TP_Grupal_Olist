@@ -23,20 +23,20 @@ order_items=traer_df('SELECT * FROM processed_order_items')
 # customers  = pd.read_csv('csv normalizados\csv normalizados\CustomersNor.csv')
 # order_items  = pd.read_csv('csv normalizados\csv normalizados\Order_itemsNor.csv')
 
-# orders[['order_purchase_timestamp','order_approved_at','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
-#        'order_approved_at','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
+orders[['order_purchase_timestamp','order_approved_at','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
+       'order_approved_at','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
 
-orders['order_purchase_timestamp'] = orders['order_purchase_timestamp'].dt.date
-orders['order_approved_at'] = orders['order_approved_at'].dt.date
-orders['order_delivered_carrier_date'] = orders['order_delivered_carrier_date'].dt.date
-orders['order_delivered_customer_date'] = orders['order_delivered_customer_date'].dt.date
-orders['order_estimated_delivery_date'] = orders['order_estimated_delivery_date'].dt.date
+# orders['order_purchase_timestamp'] = orders['order_purchase_timestamp'].dt.date
+# orders['order_approved_at'] = orders['order_approved_at'].dt.date
+# orders['order_delivered_carrier_date'] = orders['order_delivered_carrier_date'].dt.date
+# orders['order_delivered_customer_date'] = orders['order_delivered_customer_date'].dt.date
+# orders['order_estimated_delivery_date'] = orders['order_estimated_delivery_date'].dt.date
 
-orders['order_purchase_timestamp'] = pd.to_datetime(orders['order_purchase_timestamp'])
-orders['order_approved_at'] = pd.to_datetime(orders['order_approved_at'])
-orders['order_delivered_carrier_date'] = pd.to_datetime(orders['order_delivered_carrier_date'])
-orders['order_delivered_customer_date'] = pd.to_datetime(orders['order_delivered_customer_date'])
-orders['order_estimated_delivery_date'] = pd.to_datetime(orders['order_estimated_delivery_date'])
+# orders['order_purchase_timestamp'] = pd.to_datetime(orders['order_purchase_timestamp'])
+# orders['order_approved_at'] = pd.to_datetime(orders['order_approved_at'])
+# orders['order_delivered_carrier_date'] = pd.to_datetime(orders['order_delivered_carrier_date'])
+# orders['order_delivered_customer_date'] = pd.to_datetime(orders['order_delivered_customer_date'])
+# orders['order_estimated_delivery_date'] = pd.to_datetime(orders['order_estimated_delivery_date'])
 
 customers_order = pd.merge(orders,customers, on=["customer_id"])
 customers_order['time_delay'] = (customers_order['order_delivered_customer_date'] - customers_order['order_estimated_delivery_date'])
