@@ -7,7 +7,7 @@ def run():
                         initial_sidebar_state="auto")
 
     # STYILING
-
+    st.sidebar.image("olist.png", use_column_width=True)
     FONT_SIZE_CSS = f"""
     <style>
     h1 {{
@@ -26,5 +26,5 @@ def run():
     }}
     </style>
     """
-
+    
     st.write(FONT_SIZE_CSS, unsafe_allow_html=True)
