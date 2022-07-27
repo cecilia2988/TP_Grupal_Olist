@@ -1,4 +1,5 @@
 from dis import dis
+from multimethod import RETURN
 import streamlit as st
 import page_config 
 import pandas as pd
@@ -96,7 +97,6 @@ x = df_ML[['purchase_month','purchase_day_of_week','distance','product_volume_cm
 y = df_ML['freight_value']
 
 
-
 #Creamos la funcion para predecir
 def prediccion(mes,dia,dist,vol,peso):
     #creo un dataframe para retornar
@@ -112,14 +112,6 @@ def prediccion(mes,dia,dist,vol,peso):
 x_cla = df_ML[['purchase_month', 'purchase_day_of_week']]
 y_cla = df_ML['est_to_deliver']
 
-#definimos los conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(x_cla, y_cla, test_size=0.30, random_state=42)
-
-# Creamos un objeto arbol
-tree = DecisionTreeClassifier()
-
-#Entrenamos el modelo
-
 
 #Creamos la funcion para predecir
 def delay(mes,dia):
@@ -132,8 +124,12 @@ def delay(mes,dia):
     y_cla_prueba = tree.predict(df)
     print(y_cla_prueba)'''
 
+
+# Creamos un objeto arbol
+tree = DecisionTreeClassifier()
 #Instanciamos el modelo
 adr2= RandomForestRegressor(n_estimators=200, random_state=0)
+
 banderaprecio=False
 def entrenar_precio():
     #definimos los conjuntos de entrenamiento y prueba
@@ -143,19 +139,38 @@ def entrenar_precio():
     banderaprecio=True
     return adr2
 
-st.subheader("Shipping price")
-if st.button('RUN'):
-    if banderaprecio==False:
-        adr2=entrenar_precio()
-    dfpred_Precio=prediccion(mes,dia,dist,vol,peso)
-    st.dataframe(dfpred_Precio)
-    y_cla_valor = adr2.predict(dfpred_Precio)
-    st.subheader("Estimated shipping price")
-    st.success(y_cla_valor[0])
-    
-
-st.subheader("Delay")
-if st.button('RUN.'):
+def entrenar_delay():
+    #definimos los conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(x_cla, y_cla, test_size=0.30, random_state=42)
+    #Entrenamos el modelo
     tree.fit(X_train, y_train)
+    return tree
+
+left_column, right_column = st.columns(2)
+with left_column:
+    st.subheader("Shipping price")
+    if st.button('RUN'):
+        if banderaprecio==False:
+            adr2=entrenar_precio()
+            tree=entrenar_delay()
+        dfpred_Precio=prediccion(mes,dia,dist,vol,peso)
+        st.table(dfpred_Precio)
+        y_cla_valor = adr2.predict(dfpred_Precio)
+        st.subheader("Estimated shipping price")
+        st.success(str(round(y_cla_valor[0],2)) + ' R$')
+        df= delay(mes,dia)
+        y_cla_prueba = tree.predict(df)
+        st.subheader("Order on time?")
+        if y_cla_prueba[0]==1:
+            st.success('On Time')
+        else:
+            st.error('With Delay')
     
+with right_column:
+    st.write('.')
+        
+        
+
+        
+
 

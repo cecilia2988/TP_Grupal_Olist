@@ -58,18 +58,24 @@ order_payments_items_2=order_payments_items_2[order_payments_items_2.payment_val
 order_payments_items_2=order_payments_items_2[order_payments_items_2.payment_installments >= (cuotasfiltro)]
 
 
+Subjects = {"credit_card" : "Credit card",
+                     "boleto" : "cash payment",
+                     "debit_card" : "debit card",
+                     "voucher" : "voucher"}
 
 
-tipo_pago_elegido =order_payments_items_2.groupby(['payment_type']).count().sort_values('order_id', ascending=False)
+order_payments_items_2["Tipo_de_Pago"] = order_payments_items_2["payment_type"].map(Subjects)
+
+
+tipo_pago_elegido =order_payments_items_2.groupby(['payment_type','Tipo_de_Pago']).count().sort_values('order_id', ascending=False)
 tipo_pago_elegido.reset_index(inplace=True)
 
 
-cant_cuotas = order_payments_items_2.groupby(['payment_installments']).count().sort_values('order_id', ascending=False)
+
+cant_cuotas = order_payments_items_2.groupby(['payment_installments','Tipo_de_Pago']).count().sort_values('order_id', ascending=False)
 cant_cuotas.reset_index(inplace=True)
 cant_cuotas['average']=cant_cuotas['order_id']*100/order_payments_items_2['order_id'].count()
 cant_cuotas=cant_cuotas[cant_cuotas['payment_installments']<11]
-
-
 
 
 
@@ -83,7 +89,7 @@ figcuotas.update_layout(
     ))
 
 
-fig2 = px.pie(tipo_pago_elegido, values='order_id', names='payment_type')
+fig2 = px.pie(tipo_pago_elegido, values='order_id', names='Tipo_de_Pago')
 fig2.update_layout(
     autosize=False,
     width=600,
@@ -155,6 +161,9 @@ st.subheader("Payment method by state")
 selected_region = st.selectbox('Region', ["North","Center","South","Southeast","Northeast"])
 
 
+order_state=aplicar_region(order_state)
+
+
 if selected_region=='North':
    order_state2=order_state[order_state.customer_state.isin(lNorte)]
 if selected_region=='Center':
@@ -167,9 +176,9 @@ if selected_region=='Northeast':
    order_state2=order_state[order_state.customer_state.isin(lNordeste)]
 
 
-order_state2=order_state2.groupby(['payment_type'])[['order_id']].count()
+order_state2=order_state2.groupby(['payment_type','Tipo_de_Pago'])[['order_id']].count()
 order_state2.reset_index(inplace=True)
-figestadopagos = go.Figure(data=[go.Pie(labels=order_state2['payment_type'], values=order_state2['order_id'], hole=.3)])
+figestadopagos = go.Figure(data=[go.Pie(labels=order_state2['Tipo_de_Pago'], values=order_state2['order_id'], hole=.3)])
 figestadopagos.update_layout(
     autosize=False,
     width=600,

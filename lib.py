@@ -4,6 +4,7 @@ import pandas as pd
 import folium
 from math import radians, sin, cos, asin, sqrt
 import numpy as np
+from automatic_athena_download import traer_df
 
 
 
@@ -11,19 +12,19 @@ def load_data():
     if 'datosleidos' not in st.session_state:
         st.write("Estoy en el IF!!!!")
         st.session_state['datosleidos'] = True
-        st.session_state['order_items'] =pd.read_csv('csv normalizados\csv normalizados\Order_itemsNor.csv', infer_datetime_format = True)
-        st.session_state['products'] = pd.read_csv('csv normalizados\csv normalizados\ProductsNor.csv')
-        st.session_state['sellers'] = pd.read_csv(".\csv normalizados\csv normalizados\SellersNor.csv",delimiter = ',',encoding = "utf-8")
-        st.session_state['customers'] = pd.read_csv(".\csv normalizados\csv normalizados\CustomersNor.csv",delimiter = ',',encoding = "utf-8")
-        st.session_state['order_payments']= pd.read_csv('csv normalizados\csv normalizados\Order_paymentsNor.csv')
-        st.session_state['order_reviews']  = pd.read_csv('csv normalizados\csv normalizados\Order_reviewsNor.csv')
+        st.session_state['order_items'] =traer_df('SELECT * FROM processed_order_items')
+        st.session_state['products'] = traer_df('SELECT * FROM processed_products')
+        st.session_state['sellers'] = traer_df('SELECT * FROM processed_sellers')
+        st.session_state['customers'] = traer_df('SELECT * FROM processed_customers')
+        st.session_state['order_payments']= traer_df('SELECT * FROM processed_order_payments')
+        st.session_state['order_reviews']  = traer_df('SELECT * FROM processed_order_reviews')
         st.session_state['marketing_q'] =pd.read_csv('csv normalizados\csv normalizados\MarketingNor.csv', infer_datetime_format = True)
-        st.session_state['closed_deals']=pd.read_csv('csv normalizados\csv normalizados\Closed_dealsNor.csv', infer_datetime_format = True)
+        st.session_state['closed_deals']=traer_df('SELECT * FROM processed_closed_deals')
         parse_dates = ['order_purchase_timestamp','order_approved_at', 'order_delivered_carrier_date', 'order_delivered_customer_date', 'order_estimated_delivery_date']
-        st.session_state['orders']= pd.read_csv('csv normalizados\csv normalizados\OrdersNor.csv',infer_datetime_format = True, parse_dates = parse_dates)
+        st.session_state['orders']= traer_df('SELECT * FROM processed_orders')
         st.session_state['orders2']=load_order_with_hours()
         st.session_state['geolocalization']=pd.read_csv('geolocation.csv',delimiter = ',',encoding = "utf-8")
-        st.session_state['geo']=pd.read_csv('csv normalizados\csv normalizados\GeolocationNor.csv')
+        st.session_state['geo']=traer_df('SELECT * FROM processed_geolocation')
         st.session_state['clientesagrup']=generate_clientes_loc()
         st.session_state['vendedoresagrup']=generate_vendedores_loc()
         st.session_state['juntos']=generate_vend_clien_loc()

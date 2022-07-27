@@ -197,6 +197,10 @@ figcostoenvio.add_annotation(x='Northeast', y=25.38,
                 family="Arial Black"
             ))
 
+df_regiones= all2.groupby(['region'])[['price']].sum()
+df_regiones.reset_index(inplace=True)
+figregiovolumen = px.pie(df_regiones, values='price', names='region', color_discrete_sequence=["purple", "orange",
+                                         "blue","green","red"])
 
 
 
@@ -245,6 +249,10 @@ with left_column:
 with right_column:
         st.subheader("Sellers")
         st_data = st_folium(mv, width=900)
+
+
+st.subheader("Sales volume by region")
+st.plotly_chart(figregiovolumen, use_container_width=True)
 
 
 st.subheader("Shipping Cost")
