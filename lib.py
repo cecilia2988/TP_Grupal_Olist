@@ -18,7 +18,7 @@ def load_data():
         st.session_state['customers'] = traer_df('SELECT * FROM processed_customers')
         st.session_state['order_payments']= traer_df('SELECT * FROM processed_order_payments')
         st.session_state['order_reviews']  = traer_df('SELECT * FROM processed_order_reviews')
-        st.session_state['marketing_q'] =pd.read_csv('csv normalizados\csv normalizados\MarketingNor.csv', infer_datetime_format = True)
+        st.session_state['marketing_q'] =pd.read_csv('MarketingNor.csv', infer_datetime_format = True)
         st.session_state['closed_deals']=traer_df('SELECT * FROM processed_closed_deals')
         parse_dates = ['order_purchase_timestamp','order_approved_at', 'order_delivered_carrier_date', 'order_delivered_customer_date', 'order_estimated_delivery_date']
         st.session_state['orders']= traer_df('SELECT * FROM processed_orders')
