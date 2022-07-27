@@ -50,6 +50,7 @@ def athena_to_s3(session, params, max_execution = 5):
                 'State' in response['QueryExecution']['Status']:
             state = response['QueryExecution']['Status']['State']
             if state == 'FAILED':
+                raise Exception('Fallo la consulta')
                 return False
             elif state == 'SUCCEEDED':
                 s3_path = response['QueryExecution']['ResultConfiguration']['OutputLocation']

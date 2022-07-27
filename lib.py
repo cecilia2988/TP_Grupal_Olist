@@ -23,7 +23,7 @@ def load_data():
         parse_dates = ['order_purchase_timestamp','order_approved_at', 'order_delivered_carrier_date', 'order_delivered_customer_date', 'order_estimated_delivery_date']
         st.session_state['orders']= traer_df('SELECT * FROM processed_orders')
         st.session_state['orders2']=load_order_with_hours()
-        st.session_state['geolocalization']=pd.read_csv('geolocation.csv',delimiter = ',',encoding = "utf-8")
+        st.session_state['geolocalization']=generate_geolocalizacion()
         st.session_state['geo']=traer_df('SELECT * FROM processed_geolocation')
         st.session_state['clientesagrup']=generate_clientes_loc()
         st.session_state['vendedoresagrup']=generate_vendedores_loc()
@@ -228,6 +228,13 @@ def app_map_state_seller(df):
     'AP': 'Amapa'}
     df["seller_state_description"] = df["seller_state"].map(Subjects)
     
+    return df
+
+def generate_geolocalizacion():
+    url='https://drive.google.com/file/d/1na_XDqxWBIg8qqY6SktcCflaDrBxgA8L/view?usp=sharing'
+    path='https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+    df=pd.read_csv(path)
+
     return df
 
 
