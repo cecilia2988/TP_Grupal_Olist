@@ -26,8 +26,8 @@ customers = st.session_state['customers']
 order_items   = st.session_state['order_items']
 all= st.session_state['all']
 
-# orders[['order_purchase_timestamp','order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
-#        'order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
+orders[['order_purchase_timestamp','order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
+       'order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
 
 orders['order_purchase_timestamp'] = orders['order_purchase_timestamp'].dt.date
 orders['order_approved_at'] = orders['order_approved_at'].dt.date
@@ -60,7 +60,7 @@ figdemora.update_layout(
     height=500,
     font=dict(
         family="Courier New, monospace",
-        size=20,  # Set the font size here
+        size=20,  
         color="RebeccaPurple"
     ))
 
@@ -79,7 +79,7 @@ fig.update_layout(
     height=500,
     font=dict(
         family="Courier New, monospace",
-        size=20  # Set the font size here
+        size=20 
         
     ))
 
@@ -130,7 +130,7 @@ fig2.add_annotation(x='2017-03', y=163,
 fig2.update_layout(
     font=dict(
         family="Courier New, monospace",
-        size=15 # Set the font size here
+        size=15 
         
     ))
 
@@ -156,7 +156,7 @@ fig3.add_annotation(x='2018-03', y=9,
 fig3.update_layout(
     font=dict(
         family="Courier New, monospace",
-        size=15 # Set the font size here
+        size=15 
         
     ))
 
@@ -171,7 +171,7 @@ figbubble = px.scatter(all2.head(30), x='distance', y="estimated_delivery_time",
 figbubble.update_layout(
     font=dict(
         family="Courier New, monospace",
-        size=15 # Set the font size here
+        size=15
         
     ))
 
@@ -186,7 +186,7 @@ figdemora2.update_traces(textfont_size=12, textangle=0, textposition="outside", 
 figdemora2.update_layout(
     font=dict(
         family="Courier New, monospace",
-        size=15 # Set the font size here
+        size=15 
         
     ))
 
@@ -197,7 +197,6 @@ with left_column:
         st.plotly_chart(figdemora,use_container_width=True)
 with right_column:
         st.subheader('Delay by state')
-        # st.pyplot(fig)
         st.plotly_chart(fig,use_container_width=True)
 st.markdown("""---""")
 st.subheader("Orders with delays")
@@ -207,7 +206,7 @@ st.plotly_chart(fig3,use_container_width=True)
 
 def filedownload(df):
     csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
+    b64 = base64.b64encode(csv.encode()).decode()  
     href = f'<a href="data:file/csv;base64,{b64}" download="delay_olist.csv">Download CSV File</a>'
     return href
 
