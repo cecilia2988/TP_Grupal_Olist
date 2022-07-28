@@ -97,7 +97,7 @@ fighorarios.update_layout(
 
 
 
-fig = px.pie(seller_origin_agrupado.head(5), values='seller_id', names='origin', color_discrete_sequence=px.colors.sequential.RdBu)
+fig = px.pie(seller_origin_agrupado.head(5), values='seller_id', names='origin')
 fig.update_layout(
     autosize=False,
     width=500,

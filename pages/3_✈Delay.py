@@ -26,8 +26,8 @@ customers = st.session_state['customers']
 order_items   = st.session_state['order_items']
 all= st.session_state['all']
 
-orders[['order_purchase_timestamp','order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
-       'order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
+# orders[['order_purchase_timestamp','order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date',]]=orders[['order_purchase_timestamp',
+#        'order_approved_at','order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date']].apply(pd.to_datetime)
 
 orders['order_purchase_timestamp'] = orders['order_purchase_timestamp'].dt.date
 orders['order_approved_at'] = orders['order_approved_at'].dt.date
@@ -200,7 +200,7 @@ with right_column:
         # st.pyplot(fig)
         st.plotly_chart(fig,use_container_width=True)
 st.markdown("""---""")
-st.subheader("orders with delays")
+st.subheader("Orders with delays")
 st.plotly_chart(fig2,use_container_width=True)
 st.subheader("Days of delay")
 st.plotly_chart(fig3,use_container_width=True)
