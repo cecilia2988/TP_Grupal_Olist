@@ -36,18 +36,10 @@ order_items=st.session_state['order_items']
 all=st.session_state['all']
 
 
-# geolocalizacion =pd.read_csv(".\csv normalizados\csv normalizados\GeolocationNor.csv",delimiter = ',',encoding = "utf-8")
-
-# geolocalizacion.rename(columns={'geolocation_state':'customer_state'}, inplace=True)
-# nuevo= geolocalizacion.groupby('customer_state').agg({'geolocation_lat':'mean','geolocation_lng':'mean'})
 
 
-# clientes2=pd.merge(clientes, nuevo, on='customer_state' , how='left')
-# clientesagrup = clientes2.groupby('customer_state').agg({'geolocation_lat':'mean','geolocation_lng':'mean','customer_state':'count'})
-# clientesagrup.rename(columns={'customer_state':'cantidad'}, inplace=True)
-# clientesagrup.reset_index(inplace=True)
 
-
+#Mapa clientes
 m = folium.Map(location=[10,0], tiles="OpenStreetMap", zoom_start=2)
 from pandas.core.arrays import string_
 for i in range(0,len(clientesagrup)):
@@ -63,7 +55,7 @@ for i in range(0,len(clientesagrup)):
 
 
 
-
+#Mapa Vendedores
 mv = folium.Map(location=[10,0], tiles="OpenStreetMap", zoom_start=2)
 from pandas.core.arrays import string_
 for i in range(0,len(vendedoresagrup)):
@@ -153,9 +145,7 @@ porcentajeclientes=round(juntosfinal.clientes.sum()*100 /totalclientes,2)
 
 all2=aplicar_region(all)
 all2=all2[all2.region != 'Sin dato']
-figcostoenvio = px.box(all2, x="region", y="freight_value", color="region", color_discrete_sequence=["purple", "orange",
-                                         "green", "blue",
-                                         "red"],points=False)
+figcostoenvio = px.box(all2, x="region", y="freight_value", color="region", color_discrete_sequence=['blue','lightblue','red','green','yellow'],points=False)
 figcostoenvio.add_annotation(x='South', y=17.67,
             text="Median 17.67",
             showarrow=True,
@@ -199,8 +189,7 @@ figcostoenvio.add_annotation(x='Northeast', y=25.38,
 
 df_regiones= all2.groupby(['region'])[['price']].sum()
 df_regiones.reset_index(inplace=True)
-figregiovolumen = px.pie(df_regiones, values='price', names='region', color_discrete_sequence=["purple", "orange",
-                                         "blue","green","red"])
+figregiovolumen = px.pie(df_regiones, values='price', names='region', color_discrete_sequence=['blue','lightblue','green','red','yellow'])
 
 
 
@@ -209,7 +198,7 @@ all2.reset_index(inplace=True)
 all2.sort_values("freight_value", ascending=False, inplace=True)
 
 figbubble = px.scatter(all2.head(50), x='distance', y="freight_value",
-	         size="freight_value",color='region',
+	         size="freight_value",color='region', color_discrete_sequence=['green','yellow','red','blue','lightblue'],
                   log_x=True, size_max=60, labels=dict(order_id="products sold"))
 figbubble.update_layout(
     font=dict(
