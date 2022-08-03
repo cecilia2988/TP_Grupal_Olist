@@ -72,7 +72,7 @@ tipo_pago_elegido.reset_index(inplace=True)
 
 
 
-cant_cuotas = order_payments_items_2.groupby(['payment_installments','Tipo_de_Pago']).count().sort_values('order_id', ascending=False)
+cant_cuotas = order_payments_items_2.groupby(['payment_installments']).count().sort_values('order_id', ascending=False)
 cant_cuotas.reset_index(inplace=True)
 cant_cuotas['average']=cant_cuotas['order_id']*100/order_payments_items_2['order_id'].count()
 cant_cuotas=cant_cuotas[cant_cuotas['payment_installments']<11]
@@ -129,7 +129,7 @@ figcuotascat.update_layout(
     height=600,
     font=dict(
         family="Courier New, monospace",
-        size=20  # Set the font size here
+        size=20  
         
     ))
 
@@ -142,7 +142,7 @@ st.plotly_chart(figrelacion,use_container_width=True)
 
 def filedownload(df):
     csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
+    b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="payments.csv">Download CSV File</a>'
     return href
 
@@ -157,7 +157,7 @@ lCentro=['MT','DF','GO','MS']
 lSur=['PR','SC','RS']
 lSudeste=['MG','ES','RJ','SP']
 lNordeste=['MA','PI','BA','SE','PE','PB','CE']
-st.subheader("Payment method by state")
+st.subheader("Payment method by region")
 selected_region = st.selectbox('Region', ["North","Center","South","Southeast","Northeast"])
 
 

@@ -31,6 +31,8 @@ def load_data():
         st.session_state['customers']=app_map_state_customer(st.session_state['customers'])
         st.session_state['sellers']=app_map_state_seller(st.session_state['sellers'])
 
+
+
 def load_order_with_hours():
     orders2= pd.read_csv('olist_orders_dataset.csv')
     orders2[['order_purchase_timestamp','order_approved_at','order_delivered_customer_date','order_estimated_delivery_date',]]=orders2[['order_purchase_timestamp',
